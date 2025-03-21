@@ -41,7 +41,7 @@ export function renderWrap(element: HTMLElement, s: HeadlessState): Elements {
   if (s.drawable.visible) {
     svg = setAttributes(createSVG('svg'), {
       class: 'cg-shapes',
-      viewBox: '-4 -4 8 8',
+      viewBox: '-5 -5 10 10',
       preserveAspectRatio: 'xMidYMid slice',
     });
     svg.appendChild(createDefs());
@@ -49,7 +49,7 @@ export function renderWrap(element: HTMLElement, s: HeadlessState): Elements {
 
     customSvg = setAttributes(createSVG('svg'), {
       class: 'cg-custom-svgs',
-      viewBox: '-3.5 -3.5 8 8',
+      viewBox: '-4.5 -4.5 10 10',
       preserveAspectRatio: 'xMidYMid slice',
     });
     customSvg.appendChild(createSVG('g'));
@@ -66,7 +66,7 @@ export function renderWrap(element: HTMLElement, s: HeadlessState): Elements {
     const ranksPositionClass = s.ranksPosition === 'left' ? ' left' : '';
 
     if (s.coordinatesOnSquares) {
-      const rankN: (i: number) => number = s.orientation === 'white' ? i => i + 1 : i => 8 - i;
+      const rankN: (i: number) => number = s.orientation === 'white' ? i => i + 1 : i => 10 - i;
       files.forEach((f, i) =>
         container.appendChild(
           renderCoords(

@@ -1,7 +1,7 @@
 import { pos2key, invRanks } from './util.js';
 import * as cg from './types.js';
 
-export const initial: cg.FEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR';
+export const initial: cg.FEN = 'rnbcqksbnr/pppppppppp/10/10/10/10/10/10/PPPPPPPPPP/RNBCQKSBNR w KQkq - - 0 1';
 
 const roles: { [letter: string]: cg.Role } = {
   p: 'pawn',
@@ -10,6 +10,8 @@ const roles: { [letter: string]: cg.Role } = {
   b: 'bishop',
   q: 'queen',
   k: 'king',
+  s: 'princess',
+  c: 'prince',
 };
 
 const letters = {
@@ -19,12 +21,14 @@ const letters = {
   bishop: 'b',
   queen: 'q',
   king: 'k',
+  princess: 's',
+  prince: 'c',
 };
 
 export function read(fen: cg.FEN): cg.Pieces {
   if (fen === 'start') fen = initial;
   const pieces: cg.Pieces = new Map();
-  let row = 7,
+  let row = 9,
     col = 0;
   for (const c of fen) {
     switch (c) {
@@ -43,7 +47,7 @@ export function read(fen: cg.FEN): cg.Pieces {
       }
       default: {
         const nb = c.charCodeAt(0);
-        if (nb < 57) col += nb - 48;
+        if (nb < 58) col += nb - 48;
         else {
           const role = c.toLowerCase();
           pieces.set(pos2key([col, row]), {

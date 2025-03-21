@@ -334,7 +334,7 @@ function renderLabel(
 }
 
 function orient(pos: cg.Pos, color: cg.Color): cg.Pos {
-  return color === 'white' ? pos : [7 - pos[0], 7 - pos[1]];
+  return color === 'white' ? pos : [9 - pos[0], 9 - pos[1]];
 }
 
 function isShort(dest: cg.Key | undefined, dests: ArrowDests) {
@@ -364,11 +364,11 @@ function makeCustomBrush(base: DrawBrush, modifiers: DrawModifiers | undefined):
 }
 
 function circleWidth(): [number, number] {
-  return [3 / 64, 4 / 64];
+  return [3 / 100, 4 / 100];
 }
 
 function lineWidth(brush: DrawBrush, current: boolean): number {
-  return ((brush.lineWidth || 10) * (current ? 0.85 : 1)) / 64;
+  return ((brush.lineWidth || 10) * (current ? 0.85 : 1)) / 100;
 }
 
 function opacity(brush: DrawBrush, current: boolean): number {
@@ -376,13 +376,14 @@ function opacity(brush: DrawBrush, current: boolean): number {
 }
 
 function arrowMargin(shorten: boolean): number {
-  return (shorten ? 20 : 10) / 64;
+  return (shorten ? 20 : 10) / 100;
 }
 
 function pos2user(pos: cg.Pos, bounds: DOMRectReadOnly): cg.NumberPair {
   const xScale = Math.min(1, bounds.width / bounds.height);
   const yScale = Math.min(1, bounds.height / bounds.width);
-  return [(pos[0] - 3.5) * xScale, (3.5 - pos[1]) * yScale];
+  console.log(pos, [(pos[0] - 4.5) * xScale, (4.5 - pos[1]) * yScale]);
+  return [(pos[0] - 4.5) * xScale, (4.5 - pos[1]) * yScale];
 }
 
 function filterBox(from: cg.NumberPair, to: cg.NumberPair): SVGElement {
@@ -404,7 +405,7 @@ function filterBox(from: cg.NumberPair, to: cg.NumberPair): SVGElement {
 
 function moveAngle(from: cg.NumberPair, to: cg.NumberPair, asSlot = true) {
   const angle = Math.atan2(to[1] - from[1], to[0] - from[0]) + Math.PI;
-  return asSlot ? (Math.round((angle * 8) / Math.PI) + 16) % 16 : angle;
+  return asSlot ? (Math.round((angle * 10) / Math.PI) + 20) % 20 : angle;
 }
 
 function dist(from: cg.NumberPair, to: cg.NumberPair): number {
@@ -425,11 +426,11 @@ function labelCoords(from: cg.NumberPair, to: cg.NumberPair, slots?: AngleSlots)
   //if (mag === 0) return [from[0], from[1]];
   const angle = moveAngle(from, to, false);
   if (slots) {
-    mag -= 33 / 64; // reduce by arrowhead length
+    mag -= 33 / 100; // reduce by arrowhead length
     if (slots.size > 1) {
-      mag -= 10 / 64; // reduce by shortening factor
+      mag -= 10 / 100; // reduce by shortening factor
       const slot = moveAngle(from, to);
-      if (slots.has((slot + 1) % 16) || slots.has((slot + 15) % 16)) {
+      if (slots.has((slot + 1) % 20) || slots.has((slot + 15) % 20)) {
         if (slot & 1) mag -= 0.4;
         // and by label size for the knight if another arrow is within pi / 8.
       }

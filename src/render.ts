@@ -184,7 +184,7 @@ export function updateBounds(s: State): void {
   const bounds = s.dom.elements.wrap.getBoundingClientRect();
   const container = s.dom.elements.container;
   const ratio = bounds.height / bounds.width;
-  const width = (Math.floor((bounds.width * window.devicePixelRatio) / 8) * 8) / window.devicePixelRatio;
+  const width = (Math.floor((bounds.width * window.devicePixelRatio) / 10) * 10) / window.devicePixelRatio;
   const height = width * ratio;
   container.style.width = width + 'px';
   container.style.height = height + 'px';
@@ -204,7 +204,7 @@ function removeNodes(s: State, nodes: HTMLElement[]): void {
 function posZIndex(pos: cg.Pos, asWhite: boolean): string {
   const minZ = 3;
   const rank = pos[1];
-  const z = asWhite ? minZ + 7 - rank : minZ + rank;
+  const z = asWhite ? minZ + 9 - rank : minZ + rank;
 
   return `${z}`;
 }

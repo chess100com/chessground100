@@ -1,13 +1,7 @@
-# Chessground
 
-[![Continuous Integration](https://github.com/lichess-org/chessground/workflows/Continuous%20Integration/badge.svg)](https://github.com/lichess-org/chessground/actions?query=workflow%3A%22Continuous+Integration%22)
-[![npm](https://img.shields.io/npm/v/chessground)](https://www.npmjs.com/package/chessground)
+it just fork of [https://github.com/lichess-org/chessground] for 100-square chess
 
-![Chessground in 2D and 3D](/screenshot/twin.jpg)
-
-_Chessground_ is a free/libre open source chess UI developed for
-[lichess.org](https://lichess.org).
-It targets modern browsers, as well as mobile development using Cordova.
+![Screen](/screenshot/scr.jpg)
 
 ## License
 
@@ -18,15 +12,6 @@ distributed only under the GPL. **You must release your source code** to the
 users of your website.
 
 Please read more about GPL for JavaScript on [greendrake.info](https://greendrake.info/publications/js-gpl).
-
-## Demos
-
-- [Embedded PGN viewer](https://github.com/lichess-org/pgn-viewer)
-- [Chess TV](https://lichess.org/tv)
-- [Board editor](https://lichess.org/editor)
-- [Puzzles](https://lichess.org/training)
-- [Analysis board](https://lichess.org/ofWXRFGy)
-- [Game preview](https://lichess.org/games)
 
 ## Features
 
@@ -59,7 +44,7 @@ Chessground is designed to fulfill all lichess.org web and mobile apps needs, so
 ## Installation
 
 ```sh
-npm install --save chessground
+git clone https://github.com/chess100com/chessground100
 ```
 
 ### Usage

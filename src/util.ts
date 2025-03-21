@@ -6,9 +6,9 @@ export const allKeys: readonly cg.Key[] = Array.prototype.concat(
   ...cg.files.map(c => cg.ranks.map(r => c + r)),
 );
 
-export const pos2key = (pos: cg.Pos): cg.Key => allKeys[8 * pos[0] + pos[1]];
+export const pos2key = (pos: cg.Pos): cg.Key => allKeys[10 * pos[0] + pos[1]];
 
-export const key2pos = (k: cg.Key): cg.Pos => [k.charCodeAt(0) - 97, k.charCodeAt(1) - 49];
+export const key2pos = (k: cg.Key): cg.Pos => [k.charCodeAt(0) - 97, k.length > 2 ? 9 : (k.charCodeAt(1) - 49)];
 
 export const uciToMove = (uci: string | undefined): cg.Key[] | undefined => {
   if (!uci) return undefined;
@@ -62,8 +62,8 @@ export const samePiece = (p1: cg.Piece, p2: cg.Piece): boolean =>
 export const posToTranslate =
   (bounds: DOMRectReadOnly): ((pos: cg.Pos, asWhite: boolean) => cg.NumberPair) =>
   (pos, asWhite) => [
-    ((asWhite ? pos[0] : 7 - pos[0]) * bounds.width) / 8,
-    ((asWhite ? 7 - pos[1] : pos[1]) * bounds.height) / 8,
+    ((asWhite ? pos[0] : 9 - pos[0]) * bounds.width) / 10,
+    ((asWhite ? 9 - pos[1] : pos[1]) * bounds.height) / 10,
   ];
 
 export const translate = (el: HTMLElement, pos: cg.NumberPair): void => {
@@ -95,11 +95,11 @@ export const createEl = (tagName: string, className?: string): HTMLElement => {
 export function computeSquareCenter(key: cg.Key, asWhite: boolean, bounds: DOMRectReadOnly): cg.NumberPair {
   const pos = key2pos(key);
   if (!asWhite) {
-    pos[0] = 7 - pos[0];
-    pos[1] = 7 - pos[1];
+    pos[0] = 9 - pos[0];
+    pos[1] = 9 - pos[1];
   }
   return [
-    bounds.left + (bounds.width * pos[0]) / 8 + bounds.width / 16,
-    bounds.top + (bounds.height * (7 - pos[1])) / 8 + bounds.height / 16,
+    bounds.left + (bounds.width * pos[0]) / 10 + bounds.width / 20,
+    bounds.top + (bounds.height * (9 - pos[1])) / 10 + bounds.height / 20,
   ];
 }

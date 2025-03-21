@@ -128,7 +128,7 @@ export function configure(state: HeadlessState, config: Config): void {
   applyAnimation(state, config);
 
   if (!state.movable.rookCastle && state.movable.dests) {
-    const rank = state.movable.color === 'white' ? '1' : '8',
+    const rank = state.movable.color === 'white' ? '1' : '10',
       kingStartPos = ('e' + rank) as cg.Key,
       dests = state.movable.dests.get(kingStartPos),
       king = state.pieces.get(kingStartPos);
@@ -138,7 +138,7 @@ export function configure(state: HeadlessState, config: Config): void {
       dests.filter(
         d =>
           !(d === 'a' + rank && dests.includes(('c' + rank) as cg.Key)) &&
-          !(d === 'h' + rank && dests.includes(('g' + rank) as cg.Key)),
+          !(d === 'j' + rank && dests.includes(('h' + rank) as cg.Key)),
       ),
     );
   }

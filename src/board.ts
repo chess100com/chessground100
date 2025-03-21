@@ -75,9 +75,9 @@ function tryAutoCastle(state: HeadlessState, orig: cg.Key, dest: cg.Key): boolea
 
   const origPos = key2pos(orig);
   const destPos = key2pos(dest);
-  if ((origPos[1] !== 0 && origPos[1] !== 7) || origPos[1] !== destPos[1]) return false;
+  if ((origPos[1] !== 0 && origPos[1] !== 9) || origPos[1] !== destPos[1]) return false;
   if (origPos[0] === 4 && !state.pieces.has(dest)) {
-    if (destPos[0] === 6) dest = pos2key([7, destPos[1]]);
+    if (destPos[0] === 8) dest = pos2key([9, destPos[1]]);
     else if (destPos[0] === 2) dest = pos2key([0, destPos[1]]);
   }
   const rook = state.pieces.get(dest);
@@ -269,7 +269,7 @@ function canPredrop(state: HeadlessState, orig: cg.Key, dest: cg.Key): boolean {
     !!piece &&
     (!destPiece || destPiece.color !== state.movable.color) &&
     state.predroppable.enabled &&
-    (piece.role !== 'pawn' || (dest[1] !== '1' && dest[1] !== '8')) &&
+    (piece.role !== 'pawn' || (dest[1] !== '1' && dest[1] !== '10')) &&
     state.movable.color === piece.color &&
     state.turnColor !== piece.color
   );
@@ -341,11 +341,11 @@ export function getKeyAtDomPos(
   asWhite: boolean,
   bounds: DOMRectReadOnly,
 ): cg.Key | undefined {
-  let file = Math.floor((8 * (pos[0] - bounds.left)) / bounds.width);
-  if (!asWhite) file = 7 - file;
-  let rank = 7 - Math.floor((8 * (pos[1] - bounds.top)) / bounds.height);
-  if (!asWhite) rank = 7 - rank;
-  return file >= 0 && file < 8 && rank >= 0 && rank < 8 ? pos2key([file, rank]) : undefined;
+  let file = Math.floor((10 * (pos[0] - bounds.left)) / bounds.width);
+  if (!asWhite) file = 9 - file;
+  let rank = 9 - Math.floor((10 * (pos[1] - bounds.top)) / bounds.height);
+  if (!asWhite) rank = 9 - rank;
+  return file >= 0 && file < 10 && rank >= 0 && rank < 10 ? pos2key([file, rank]) : undefined;
 }
 
 export function getSnappedKeyAtDomPos(
