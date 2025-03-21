@@ -1,7 +1,7 @@
 
 it just fork of [https://github.com/lichess-org/chessground] for 100-square chess
 
-![Screen](/screenshot/scr.jpg)
+![Screen](/screenshot/scr.png)
 
 ## License
 
